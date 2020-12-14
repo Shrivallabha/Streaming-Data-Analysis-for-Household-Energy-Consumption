@@ -1,0 +1,40 @@
+telemetry-power-consumption
+
+// first role created:
+
+AWSLambdaKinesisExecutionRole
+
+name in ecosystem: consumer-lambda
+
+includes:
+kinesis:DescribeStream
+kinesis:DescribeStreamSummary
+kinesis:GetRecords
+kinesis:GetShardIterator
+kinesis:ListShards
+kinesis:ListStreams
+kinesis:SubscribeToShard
+
+s3 bucket name - csye-kinesis-bucket
+
+dynamodb - ConsumerTable
+consumer-db-stack-ConsumerTable-1NG795N54B0XN
+
+https://blog.thundra.io/process-events-with-kinesis-and-lambda following this tutorial for consumer lambda.
+Should I add notifications?
+
+
+DEBUG --> {'Records': [{'kinesis': {'kinesisSchemaVersion': '1.0', 'partitionKey': 'partitionkey', 'sequenceNumber': '49613506181924057431730031010044355159700571549656416258', 'data': 'eyJVbm5hbWVkOiAwIjogMTYwNzQzNiwgIkRhdGUiOiAiMjAxMC0wNi0wMSIsICJUaW1lIjogIjAwOjAwOjAwIiwgIkdsb2JhbF9hY3RpdmVfcG93ZXIiOiAiMC4yODYiLCAiR2xvYmFsX3JlYWN0aXZlX3Bvd2VyIjogIjAuMDAwIiwgIlZvbHRhZ2UiOiAiMjQ2Ljg1MCIsICJHbG9iYWxfaW50ZW5zaXR5IjogIjEuMjAwIiwgIlN1Yl9tZXRlcmluZ18xIjogIjEuMDAwIiwgIlN1Yl9tZXRlcmluZ18yIjogIjAuMDAwIiwgIlN1Yl9tZXRlcmluZ18zIjogMC4wfQ==', 'approximateArrivalTimestamp': 1607721547.6}, 'eventSource': 'aws:kinesis', 'eventVersion': '1.0', 'eventID': 'shardId-000000000000:49613506181924057431730031010044355159700571549656416258', 'eventName': 'aws:kinesis:record', 'invokeIdentityArn': 'arn:aws:iam::478200231709:role/consumer-lambda', 'awsRegion': 'us-east-2', 'eventSourceARN': 'arn:aws:kinesis:us-east-2:478200231709:stream/telemetry-power-consumption'}]}
+DEBUG --> {'Records': [{'kinesis': {'kinesisSchemaVersion': '1.0', 'partitionKey': 'partitionkey', 'sequenceNumber': '49613506181924057431730031010044355159700571549656416258', 'data': 'eyJVbm5hbWVkOiAwIjogMTYwNzQzNiwgIkRhdGUiOiAiMjAxMC0wNi0wMSIsICJUaW1lIjogIjAwOjAwOjAwIiwgIkdsb2JhbF9hY3RpdmVfcG93ZXIiOiAiMC4yODYiLCAiR2xvYmFsX3JlYWN0aXZlX3Bvd2VyIjogIjAuMDAwIiwgIlZvbHRhZ2UiOiAiMjQ2Ljg1MCIsICJHbG9iYWxfaW50ZW5zaXR5IjogIjEuMjAwIiwgIlN1Yl9tZXRlcmluZ18xIjogIjEuMDAwIiwgIlN1Yl9tZXRlcmluZ18yIjogIjAuMDAwIiwgIlN1Yl9tZXRlcmluZ18zIjogMC4wfQ==', 'approximateArrivalTimestamp': 1607721547.6}, 'eventSource': 'aws:kinesis', 'eventVersion': '1.0', 'eventID': 'shardId-000000000000:49613506181924057431730031010044355159700571549656416258', 'eventName': 'aws:kinesis:record', 'invokeIdentityArn': 'arn:aws:iam::478200231709:role/consumer-lambda', 'awsRegion': 'us-east-2', 'eventSourceARN': 'arn:aws:kinesis:us-east-2:478200231709:stream/telemetry-power-consumption'}]}
+
+streaming data input s3 database:
+s3datastreaming
+
+blog for documentation- https://medium.com/build-succeeded/subscribe-an-aws-lambda-function-to-an-s3-bucket-event-using-cloudformation-and-sam-80f979675f96
+
+aws s3api create-bucket \
+--bucket household-streaming-data \
+--region us-east-2 \
+--create-bucket-configuration LocationConstraint=us-east-2
+
+

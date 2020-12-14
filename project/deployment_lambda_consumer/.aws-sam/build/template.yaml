@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    MemorySize: 1024
+    Timeout: 60
+Resources:
+  StreamingDataS3:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: s3datastreaming
+  S3TriggeredLambdaHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: S3TriggeredLambdaHandler
+      Handler: main.lambda_handler
+      Description: Function that is called when a file is stored in S3.
+      Runtime: python3.7
+      Events:
+        StreamingDataS3:
+          Type: S3
+          Properties:
+            Bucket:
+              Ref: StreamingDataS3
+            Events: s3:ObjectCreated:*
+  AllowS3ToCallLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: S3TriggeredLambdaHandler
+      Principal: s3.amazonaws.com
+      SourceArn:
+        Fn::GetAtt:
+        - StreamingDataS3
+        - Arn

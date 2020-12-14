@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'streaming data consumer lambda
+
+  '
+Resources:
+  ConsumerTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ConsumerTable
+      AttributeDefinitions:
+      - AttributeName: Date
+        AttributeType: S
+      - AttributeName: Time
+        AttributeType: S
+      KeySchema:
+      - AttributeName: Date
+        KeyType: HASH
+      - AttributeName: Time
+        KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+  ConsumerLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: main.lambda_handler
+      Runtime: python3.7
+      MemorySize: 256
+      Timeout: 10
+      Events:
+        Stream:
+          Type: Kinesis
+          Properties:
+            Stream: arn:aws:kinesis:us-east-2:478200231709:stream/telemetry-power-consumption
+            StartingPosition: LATEST
+            BatchSize: 1
+      Policies:
+      - AmazonDynamoDBFullAccess
+      Role:
+        Fn::Sub: arn:aws:iam::478200231709:role/consumer-lambda
+      CodeUri: s3://csye-kinesis-bucket/8ad8420a1f4f0e47481c98f7a94a2125
