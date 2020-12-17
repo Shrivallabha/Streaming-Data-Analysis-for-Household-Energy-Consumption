@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'Returns on demand generated pdf
+
+  '
+Resources:
+  PdfLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Events:
+        ApiEvent:
+          Properties:
+            RestApiId:
+              Ref: PdfLambdaGateway
+            Path: /{proxy+}
+            Method: ANY
+          Type: Api
+      FunctionName: pdf-lambda
+      CodeUri: s3://csye-kinesis-bucket/a130e6e45ce81f71caf567362e2e7fc4
+      Handler: main.handler
+      Runtime: python3.7
+      Timeout: 300
+      MemorySize: 2048
+      Description: on-demand pdf generation
+      Role:
+        Fn::Sub: arn:aws:iam::478200231709:role/fastapi-lambda-role
+  PdfLambdaGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      OpenApiVersion: 3.0.0

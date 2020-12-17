@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'predict and store in dynamodb
+
+  '
+Resources:
+  RoutePredictionsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Events:
+        ApiEvent:
+          Properties:
+            RestApiId:
+              Ref: RoutePredictionsGateway
+            Path: /{proxy+}
+            Method: ANY
+          Type: Api
+      FunctionName: route-predictions-userid
+      CodeUri: s3://csye-kinesis-bucket/7b394f64f33a2fc5d2f541ef263eefee
+      Handler: main.handler
+      Runtime: python3.7
+      Timeout: 900
+      MemorySize: 2048
+      Description: predict and store in dynamodb
+      Role:
+        Fn::Sub: arn:aws:iam::478200231709:role/fastapi-lambda-role
+  RoutePredictionsGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      OpenApiVersion: 3.0.0

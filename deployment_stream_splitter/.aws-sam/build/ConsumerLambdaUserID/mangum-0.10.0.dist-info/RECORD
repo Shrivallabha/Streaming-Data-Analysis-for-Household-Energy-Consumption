@@ -1,0 +1,13 @@
+mangum/__init__.py,sha256=GB7XMKAUfGzLacY5r35j_L7eE_ug3CaKYQsY8FQhURA,28
+mangum/adapter.py,sha256=cJX4SId_NTdUvMjVJkZVzIUSdZQdz-q4k_hoXPAYfnE,6587
+mangum/exceptions.py,sha256=AuQ6W2yb_vhpiZPHC6rVhHckeOTdrqNdJDWjTuRr8bo,440
+mangum/py.typed,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+mangum/types.py,sha256=JWJ8JLxt3IJI6s51DRxWEEVw2icL7K2sap0ZJb83eHI,406
+mangum/protocols/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+mangum/protocols/http.py,sha256=z4hnFXBeYAB4b_4xtfo4xbcmX3CwkXmbqybjQxDZxo4,6514
+mangum/protocols/lifespan.py,sha256=RWS4Ti1iKIL8WypsBjs4r-VpXucTrzopT844Nwv5Omg,7757
+mangum-0.10.0.dist-info/LICENSE,sha256=EDwlwoxIwMXzMFK52ffMke53Skqt_9UaGAiFMZxJEFU,1072
+mangum-0.10.0.dist-info/METADATA,sha256=x44w5NeDJFQ7pL3AP2LXQq-HzAwt7gvxT4Tx_aktOR8,3026
+mangum-0.10.0.dist-info/WHEEL,sha256=EVRjI69F5qVjm_YgqcTXPnTAv3BfSUr0WVAHuSP3Xoo,92
+mangum-0.10.0.dist-info/top_level.txt,sha256=y3x6Opf35onL1vlkxwqRyEmD-gcnlqgI_2E7IF24COU,7
+mangum-0.10.0.dist-info/RECORD,,
