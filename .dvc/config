@@ -1,6 +1,0 @@
-[core]
-    remote = s3remote
-['remote "ssremote"']
-    url = s3://sagemaker-model-7245/dvc-storage
-['remote "s3remote"']
-    url = s3://sagemaker-model-7245/dvc-storage
