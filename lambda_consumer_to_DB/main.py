@@ -6,7 +6,7 @@ import base64
 #import ast
 
 def load2table(payload):
-    resource = boto3.resource('dynamodb', region_name='us-east-2', aws_access_key_id='AKIAW6VXUO4OZDG5KBYV', aws_secret_access_key='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')
+    resource = boto3.resource('dynamodb', region_name='us-east-2', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_ACCESS_KEY)
     table = resource.Table("ConsumerTable")
 
     item = payload

@@ -10,9 +10,6 @@ import numpy as np
 import datetime as dt
 
 
-ACCESS_KEY = 'AKIAW6VXUO4OZDG5KBYV'
-SECRET_KEY = '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'
-
 client = boto3.client(
     'kinesis',
     aws_access_key_id=ACCESS_KEY,
@@ -27,8 +24,8 @@ def predict(data):
     
     data = data.resample('h').mean()
     client = boto3.client('sagemaker-runtime', 
-                         aws_access_key_id='AKIAIGBTOQC5574I3CMA',
-                        aws_secret_access_key='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')
+                         aws_access_key_id=ACCESS_KEY,
+                        aws_secret_access_key=SECRET_ACCESS_KEY)
     endpoint_name = 'tensorflow-inference-2020-12-18-12-07-04-982'  
     
     min_ = np.array([1.73818056e-01, 5.78111111e-02, 2.31088229e+02, 8.08333333e-01,
@@ -85,7 +82,7 @@ def upload_to_aws(local_file, bucket, s3_file):
 
 
 def load2table(item):
-    resource = boto3.resource('dynamodb', region_name='us-east-2', aws_access_key_id='AKIAW6VXUO4OZDG5KBYV', aws_secret_access_key='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')
+    resource = boto3.resource('dynamodb', region_name='us-east-2', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_ACCESS_KEY)
     table = resource.Table("real-time-predictions")
 
     table.put_item(Item=item)

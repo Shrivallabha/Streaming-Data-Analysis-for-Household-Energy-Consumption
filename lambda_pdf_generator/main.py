@@ -6,8 +6,6 @@ from mangum import Mangum
 from PyPDF2 import PdfFileWriter as w
 import fitz
 
-ACCESS_KEY = 'AKIAW6VXUO4OZDG5KBYV'
-SECRET_KEY = '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'
 
 s3 = boto3.resource(
     service_name='s3',

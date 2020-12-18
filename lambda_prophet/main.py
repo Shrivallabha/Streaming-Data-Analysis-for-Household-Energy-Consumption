@@ -43,8 +43,8 @@ def get_model(bucket = 'sagemaker-model-7245',model_path = 'prophet_model.json')
     returns FB prophet model stored in S3
     """
     client = boto3.client('s3',
-                           aws_access_key_id='AKIAIGBTOQC5574I3CMA',
-                           aws_secret_access_key='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'
+                           aws_access_key_id=ACCESS_KEY,
+                           aws_secret_access_key=SECRET_ACCESS_KEY
                          )
     result = client.get_object(Bucket=BUCKET, Key=model_path) 
     text = result["Body"].read().decode('utf-8')
@@ -59,8 +59,8 @@ def save_plot_s3(fig, KEY,BUCKET_NAME = 'sagemaker-model-7245'):
     img_data.seek(0)
 
     session = boto3.Session(
-        aws_access_key_id='AKIAIGBTOQC5574I3CMA',
-        aws_secret_access_key='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',
+        aws_access_key_id=ACCESS_KEY,
+        aws_secret_access_key=SECRET_ACCESS_KEY,
         region_name='us-east-2'
     )
     s3 = session.resource('s3')
