@@ -4,6 +4,8 @@ Architecture Diagram
 
 ![](architecture_diagram.jpeg)
 
+![](ElectricityConsumptionFlow.jpeg)
+
 Modelling:
 
 For forecasting, we have taken a Multivariate Times Series forecasting approach to predict future usage of power by an individual household. For this, we utilized an LSTM to train on our dataset. 
