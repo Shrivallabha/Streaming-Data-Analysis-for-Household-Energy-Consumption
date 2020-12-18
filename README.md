@@ -13,7 +13,7 @@ Shrivallabha Kulkarni <br />
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
 
 Quick access to the frontend web application built using Streamlit: 
-
+ http://3.138.196.237:8502
 
 ## Architecture Diagram
 ![](Diagram.jpeg)
