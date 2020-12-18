@@ -1,0 +1,6 @@
+fastapi
+boto3
+mangum
+PyPDF2
+fitz
+PyMuPDF
