@@ -1,31 +1,31 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-    Returns on demand generated pdf url
+    predict and store in dynamodb
 Resources:
-    PdfLambda2:
+    RoutePredictionsLambda:
         Type: AWS::Serverless::Function
         Properties:
             Events:
                 ApiEvent:
                     Properties:
                         RestApiId:
-                            Ref: PdfLambda2Gateway
+                            Ref: RoutePredictionsGateway
                         Path: /{proxy+}
                         Method: ANY
                     Type: Api
-            FunctionName: pdf-lambda2
+            FunctionName: route-predictions-userid
             CodeUri: ./
             Handler: main.handler
             Runtime: python3.7
-            Timeout: 300 # timeout of your lambda function
+            Timeout: 900 # timeout of your lambda function
             MemorySize: 2048 # memory size of your lambda function
-            Description: on-demand pdf url generation
+            Description: predict and store in dynamodb
             # other options, see ->
             # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-specification-template-anatomy-globals.html#sam-specification-template-anatomy-globals-supported-resources-and-properties
             Role: !Sub #AWSLambdaBasicExecutionRole
 
-    PdfLambda2Gateway:
+    RoutePredictionsGateway:
         Type: AWS::Serverless::Api
         Properties:
             StageName: prod

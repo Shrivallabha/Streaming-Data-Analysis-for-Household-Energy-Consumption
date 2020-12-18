@@ -40,10 +40,10 @@ Resources:
               Stream:
                 Type: Kinesis
                 Properties:
-                  Stream: arn:aws:kinesis:us-east-2:478200231709:stream/telemetry-power-consumption
+                  Stream: !Getatt stream.arn #arn of the stream
                   StartingPosition: LATEST
                   BatchSize: 1
             Policies:
               - AmazonDynamoDBFullAccess
-            Role: !Sub arn:aws:iam::478200231709:role/consumer-lambda 
+            Role: !Sub #arn of AWSLambdaKinesisExecutionRole
 
