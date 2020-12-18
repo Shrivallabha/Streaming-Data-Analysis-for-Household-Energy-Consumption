@@ -2,7 +2,7 @@
 
 # CSYE7245 Real-time Streaming Data Analysis for Household Energy Consumption
 
-This repository contains a serverless architecture for streaming data analysis, that is robust and can be scaled to incoroprate a multitude of users by using concurrency in lambda functions. This project uses the AWS architecture, mainly - Amazon Kinesis, Amazon SageMaker and AWS Lambda functions.
+This repository contains a serverless architecture for streaming data analysis that is robust and can be scaled to incoroprate a multitude of users by using concurrency in lambda functions. This project uses the AWS architecture, mainly - Amazon Kinesis, Amazon SageMaker and AWS Lambda functions.
 
 **Team 1 - Members:**<br />
 Pramod P Pai <br />
@@ -15,13 +15,14 @@ Shrivallabha Kulkarni <br />
 Quick access to the frontend web application built using Streamlit: 
 
 
-### Architecture Diagram
+## Architecture Diagram
 ![](Diagram.jpeg)
 
 ### Codelab document
 https://codelabs-preview.appspot.com/?file_id=1QweinXID7XM22HwfUxpUpqQj_xby4-Eq1p3Wejzg2cA#4
 
 ## Steps to Reproduce Architecture
+### Lambda Functions
 All the Lambda functions shown in the architecture diagram have been deployed using SAM (Serverless Application model). Every Lambda function comes with it's own 
 * template.yml
 * requirements.txt
@@ -46,6 +47,39 @@ These files can be found in the folders in this repo with the prefix **'lambda_'
 
 Go to AWS CloudFormation to check if your stack has been created.
 
+### [Amazon Kinesis Streams](https://aws.amazon.com/kinesis/)
+
+The following code was used to create the Kinesis stream used in this architecture. It is important to create the stream before running the pipeline.
+```
+client.create_stream(StreamName="stream-name", ShardCount=1)
+```
+### Other Resources
+The template files create the following resources apart from the Lambda functions to support the workflow of the architecture. All the details about these resources are in the template files in the respective folders
+* S3 Bucket 1
+* S3 Bucket 2
+* DynamoDB Table
+* CloudWatch
+
+### Deploying the Streamlit App 
+
+[Streamlit](https://www.streamlit.io/) is used to show the end-users how the deployed lambda functions come together for the three main features of the project i.e. stream-processing and batch-processing. The app directly interacts with the built components on AWS and provides a userinterface to run the pipeline.
+
+The Python code for this app can be found at `streamlit_webapp/app.py`. This app is deployed on the EC2 Instance.
+
+> Install required libraries
+
+```
+pip3 install streamlit
+pip3 install boto3
+pip3 install pandas
+pip3 install configparser
+```
+
+> Run `app.py`
+
+Run the WebApp by running `streamlit run app.py`. 
+
+## Prediction Models Used
 Modelling:
 
 For forecasting, we have taken a Multivariate Times Series forecasting approach to predict future usage of power by an individual household. For this, we utilized an LSTM to train on our dataset. 
