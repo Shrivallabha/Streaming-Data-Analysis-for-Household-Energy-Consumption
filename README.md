@@ -18,6 +18,34 @@ Quick access to the frontend web application built using Streamlit:
 ### Architecture Diagram
 ![](Diagram.jpeg)
 
+### Codelab document
+https://codelabs-preview.appspot.com/?file_id=1QweinXID7XM22HwfUxpUpqQj_xby4-Eq1p3Wejzg2cA#4
+
+## Steps to Reproduce Architecture
+All the Lambda functions shown in the architecture diagram have been deployed using SAM (Serverless Application model). Every Lambda function comes with it's own 
+* template.yml
+* requirements.txt
+* main.py
+
+Create an S3 bucket that will store the Lambda function's metadata for deployment
+* aws s3api create-bucket \
+--<your_bucket> \
+--region <pass_region> \
+--create-bucket-configuration LocationConstraint=<pass_region>
+
+
+These files can be found in the folders in this repo with the prefix **'lambda_'**. Go into the respective folder and follow these steps to deploy your Lambda function on AWS:
+* sam validate 
+> returns a success message if the template is valid
+* sam build --use-container --debug
+>Builds the entire package into an AWS like docker environment
+* sam package --s3-bucket <your_bucket> --output-template-file out.yml --region <pass_region>
+>Add the bucket name that you previously created along with the desired region
+* sam deploy --template-file out.yml --stack-name <stack_name> --region <pass_region> --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM  
+> Enter a name for the stack, recommended name is the same as the **lambda_** folder names   
+
+Go to AWS CloudFormation to check if your stack has been created.
+
 Modelling:
 
 For forecasting, we have taken a Multivariate Times Series forecasting approach to predict future usage of power by an individual household. For this, we utilized an LSTM to train on our dataset. 
