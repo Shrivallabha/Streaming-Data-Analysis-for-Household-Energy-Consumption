@@ -22,6 +22,13 @@ Quick access to the frontend web application built using Streamlit:
 https://codelabs-preview.appspot.com/?file_id=1QweinXID7XM22HwfUxpUpqQj_xby4-Eq1p3Wejzg2cA#4
 
 ## Steps to Reproduce Architecture
+### Roles
+Create an AWS account and manage roles with IAM. The following roles are needed for the workflow of the architecture
+* AWSLambdaKinesisExecutionRole
+* AWSLambdaBasicExecutionRole
+
+AWS CLI or the console can be used to create the above roles
+
 ### Lambda Functions
 All the Lambda functions shown in the architecture diagram have been deployed using SAM (Serverless Application model). Every Lambda function comes with it's own 
 * template.yml
@@ -79,7 +86,7 @@ pip3 install configparser
 
 Run the WebApp by running `streamlit run app.py`. 
 
-Modelling:
+### Prediction Models, Deployment
 
 For forecasting, we have taken a Multivariate Times Series forecasting approach to predict future usage of power by an individual household. For this, we utilized an LSTM to train on our dataset. 
 After multiple training sessions, we have saved our model checkpoints on S3.
@@ -100,7 +107,7 @@ The untarred model directory structure may look like this.
    >         |--variables
    >         |--saved_model.pb
 
-Creating a SageMaker Model
+### Creating a SageMaker Model
 A SageMaker Model contains references to a model.tar.gz file in S3 containing serialized model data, and a Docker image used to serve predictions with that model.
 You must package the contents in a model directory (including models, inference.py and external modules) in .tar.gz format in a file named "model.tar.gz" and upload it to S3. If you're on a Unix-based operating system, you can create a "model.tar.gz" using the tar utility:
 ```
@@ -142,7 +149,7 @@ print(response['CustomAttributes'])
 ```
 
 
-Deploying to Multi-Model Endpoint
+### Deploying to Multi-Model Endpoint
 Multi-Model Endpoint can be used together with Pre/Post-Processing. Each model will need its own inference.py otherwise default handlers will be used. An example of the directory structure of Multi-Model Endpoint and Pre/Post-Processing would look like this:
 >   /opt/ml/models/model1/model
         |--[model_version_number]
@@ -155,6 +162,7 @@ Multi-Model Endpoint can be used together with Pre/Post-Processing. Each model w
             |--saved_model.pb
 
 
+### Prophet for Time Series
 Feature 2: Monthly forecasting using Prophet
 
 Considering real time streaming power usage data and the latest date we have collected the data for, we can forecast customers usage of power for the rest of the month. This can provide the customers with a lot of insight on whether to cut down on excessive usage of power.
