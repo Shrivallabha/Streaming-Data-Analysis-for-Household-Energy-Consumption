@@ -1,8 +1,21 @@
-# Real-time Streaming Data Analysis for Household Energy Consumption
+![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)  [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+
+# CSYE7245 Real-time Streaming Data Analysis for Household Energy Consumption
 
 This repository contains a serverless architecture for streaming data analysis, that is robust and can be scaled to incoroprate a multitude of users by using concurrency in lambda functions. This project uses the AWS architecture, mainly - Amazon Kinesis, Amazon SageMaker and AWS Lambda functions.
 
-Architecture Diagram
+**Team 1 - Members:**<br />
+Pramod P Pai <br />
+Prajwal S Mylar <br />
+Shrivallabha Kulkarni <br />
+
+##### Streamlit Application<br />
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://shields.io/)
+
+Quick access to the frontend web application built using Streamlit: 
+
+
+### Architecture Diagram
 ![](Diagram.jpeg)
 
 Modelling:
