@@ -179,9 +179,3 @@ We get this by feeding in a dataframe containing dates generated till the end of
 forecast = m.predict(dates_df)
 ```
 Prophet also plots trends of usage, weekly, daily and yearly seasonality in the usage
-
-
-
-
-
-# streamlitwebapp
