@@ -4,7 +4,7 @@ Architecture Diagram
 
 ![](architecture_diagram.jpeg)
 
-![](ElectricityConsumptionFlow.jpeg)
+![](ElectricityConsumptionFlow.png)
 
 Modelling:
 
