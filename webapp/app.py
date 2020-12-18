@@ -162,8 +162,6 @@ def main():
                 if uploaded == True:
                     st.success('Streaming started for all 3 modes')
                 st.write('inference loading...')
-                time.sleep(8)
-                pred = random.randrange(11, 16)
                 st.write('The usage prediction for the next day is ' + str(pred) + ' KWh')    
 
    
@@ -184,8 +182,6 @@ def main():
                 if uploaded == True:
                     st.success('Streaming started for 2 modes')
                 st.write('inference loading...')    
-                time.sleep(6)
-                pred = random.randrange(5, 9)
                 st.write('The usage prediction for the next day is ' + str(pred) + ' KWh')       
                     
 
@@ -201,8 +197,6 @@ def main():
                 uploaded = upload_to_aws('./upload_processed/' + str(1234) + '_' + filename, 's3datastreaming', str(1234) + '_' + filename)
                 if uploaded == True:
                     st.success('Streaming started for 1 mode')
-                st.write('inference loading...')    
-                pred = random.randrange(2, 6)
                 st.write('The usage prediction for the next day is ' + str(pred) + ' KWh')         
        
 
