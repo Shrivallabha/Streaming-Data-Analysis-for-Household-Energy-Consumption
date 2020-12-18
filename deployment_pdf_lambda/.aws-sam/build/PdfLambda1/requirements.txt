@@ -1,7 +1,0 @@
-boto3
-pandas
-fastapi
-mangum
-matplotlib
-# PyPDF2
-# fitz
