@@ -2,4 +2,4 @@ This repository contains a serverless architecture for streaming data analysis, 
 
 Architecture Diagram
 
-![](images/architecture_diagram.jpeg)
+![](architecture_diagram.jpeg)
