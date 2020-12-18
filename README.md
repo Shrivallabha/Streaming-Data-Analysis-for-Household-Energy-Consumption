@@ -161,7 +161,6 @@ Multi-Model Endpoint can be used together with Pre/Post-Processing. Each model w
             |--variables
             |--saved_model.pb
 
-
 ### Prophet for Time Series
 Feature 2: Monthly forecasting using Prophet
 
